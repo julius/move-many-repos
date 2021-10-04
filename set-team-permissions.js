@@ -1,3 +1,9 @@
+const TEAM_SLUG = 'ac-masterclass';
+const PERMISSION = 'pull'; // READ-ONLY
+// const PERMISSION = 'push'; // READ-AND-WRITE
+// const PERMISSION = 'maintain'; // ANYTHING, BUT NOT DESTRUCTIVE
+// const PERMISSION = 'admin'; // FULL
+
 const { Octokit } = require('@octokit/rest');
 const credentials = require('./credentials');
 const fs = require('fs');
@@ -15,10 +21,12 @@ const repos = fs
 (async () => {
     for (let i = 0; i < repos.length; i++) {
         try {
-            await octokit.request(`POST /repos/mmpro/${repos[i]}/transfer`, {
-                owner: 'mmpro',
+            await octokit.request(`PUT /orgs/admiralcloud/teams/${TEAM_SLUG}/repos/admiralcloud/${repos[i]}`, {
+                org: 'admiralcloud',
+                team_slug: TEAM_SLUG,
+                owner: 'admiralcloud',
                 repo: repos[i],
-                new_owner: 'admiralcloud',
+                permission: PERMISSION,
             });
             console.log(repos[i]);
         } catch (e) {
