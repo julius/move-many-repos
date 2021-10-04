@@ -1,0 +1,11 @@
+{
+  "name": "move-many-repos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:julius/move-many-repos.git",
+  "author": "Julius Eckert <git@julius-eckert.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^18.11.4"
+  }
+}
